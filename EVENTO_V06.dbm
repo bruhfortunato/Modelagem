@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.7.0-alpha">
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<database name="novo_banco_de_dados">
+</database>
+
+<table name="TB_TIPO_EVENTO">
+	<schema name="public"/>
+	<position x="605.718" y="1087"/>
+	<column name="ID_TIPO_EVENTO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_TIPO_EVENTO" type="pk-constr" factor="10" table="public.&quot;TB_TIPO_EVENTO&quot;">
+		<columns names="ID_TIPO_EVENTO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_EVENTO">
+	<schema name="public"/>
+	<position x="531.436" y="754.949"/>
+	<column name="ID_EVENTO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_EVENTO" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="DT_HORA_EVENTO">
+		<type name="timestamp"/>
+	</column>
+	<column name="QTDE_CONVIDADOS_ATUAL">
+		<type name="integer"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_EVENTO" type="pk-constr" factor="10" table="public.&quot;TB_EVENTO&quot;">
+		<columns names="ID_EVENTO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_CONVIDADOS">
+	<schema name="public"/>
+	<position x="204" y="560.103"/>
+	<column name="ID_CONVIDADO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_CONVIDADO" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<column name="DT_NASC" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="EMAIL" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="QTDE_CONVITES" not-null="true">
+		<type name="numeric" length="7" precision="2"/>
+	</column>
+	<column name="IMG_CONVIDADO">
+		<type name="oid"/>
+	</column>
+	<column name="OBS">
+		<type name="varchar" length="62"/>
+	</column>
+	<column name="FG_CONFIRMOU_PRESENCA" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_CONVIDADOS" type="pk-constr" factor="10" table="public.&quot;TB_CONVIDADOS&quot;">
+		<columns names="ID_CONVIDADO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_CLIENTE">
+	<schema name="public"/>
+	<position x="720.33" y="16"/>
+	<column name="ID_CLIENTE" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_CLIENTE" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<column name="CPF_CNPJ" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_CLIENTE" type="pk-constr" factor="10" table="public.&quot;TB_CLIENTE&quot;">
+		<columns names="ID_CLIENTE" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_CLIENTE_ENDERECO">
+	<schema name="public"/>
+	<position x="1046.41" y="232.564"/>
+</table>
+
+<table name="TB_ENDERECO">
+	<schema name="public"/>
+	<position x="1233.64" y="4"/>
+	<column name="ID_ENDERECO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="NUM" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="COMPLEMENTO" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="BAIRRO">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="CEP" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_ENDERECO" type="pk-constr" factor="10" table="public.&quot;TB_ENDERECO&quot;">
+		<columns names="ID_ENDERECO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_CONTATO">
+	<schema name="public"/>
+	<position x="844.33" y="440"/>
+	<column name="ID_CONTATO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="CONTATO" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_CONTATO" type="pk-constr" factor="10" table="public.&quot;TB_CONTATO&quot;">
+		<columns names="ID_CONTATO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_TIPO_EVENTO_has_many_TB_EVENTO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="1"
+	 src-table="public.&quot;TB_TIPO_EVENTO&quot;"
+	 dst-table="public.&quot;TB_EVENTO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-89.8512" y="-3.27304"/>
+	</label>
+</relationship>
+
+<relationship name="TB_CLIENTE_has_many_TB_EVENTO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="2"
+	 src-table="public.&quot;TB_CLIENTE&quot;"
+	 dst-table="public.&quot;TB_EVENTO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="95.3428" y="-46.023"/>
+	</label>
+</relationship>
+
+<relationship name="TB_CLIENTE_has_many_TB_CLIENTE_ENDERECO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="0"
+	 src-table="public.&quot;TB_CLIENTE&quot;"
+	 dst-table="public.&quot;TB_CLIENTE_ENDERECO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="66.1041" y="-4.33054"/>
+	</label>
+</relationship>
+
+<relationship name="TB_ENDERECO_has_many_TB_CLIENTE_ENDERECO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1"
+	 src-table="public.&quot;TB_ENDERECO&quot;"
+	 dst-table="public.&quot;TB_CLIENTE_ENDERECO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="87.4507" y="5.41946"/>
+	</label>
+</relationship>
+
+<table name="TB_UF">
+	<schema name="public"/>
+	<position x="1663.49" y="599.692"/>
+	<column name="ID_UF" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_UF" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<column name="SIGLA" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<constraint name="PK_ID_UF" type="pk-constr" factor="10" table="public.&quot;TB_UF&quot;">
+		<columns names="ID_UF" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_CIDADE">
+	<schema name="public"/>
+	<position x="1644.93" y="361.166"/>
+	<column name="ID_CIDADE" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_CIDADE" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<constraint name="PK_ID_CIDADE" type="pk-constr" factor="10" table="public.&quot;TB_CIDADE&quot;">
+		<columns names="ID_CIDADE" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_LOCAL_EVENTO">
+	<schema name="public"/>
+	<position x="1289.39" y="767.4"/>
+	<column name="ID_LOCAL_EVENTO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="NOME_LOCAL" not-null="true">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="PROPRIETARIO" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<column name="CPF_CNPJ" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_LOCAL_EVENTO" type="pk-constr" factor="10" table="public.&quot;TB_LOCAL_EVENTO&quot;">
+		<columns names="ID_LOCAL_EVENTO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_ENDERECO_has_many_TB_LOCAL_EVENTO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="1"
+	 src-table="public.&quot;TB_ENDERECO&quot;"
+	 dst-table="public.&quot;TB_LOCAL_EVENTO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="72.7107" y="-0.498535"/>
+	</label>
+</relationship>
+
+<relationship name="TB_UF_has_many_TB_CIDADE" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="public.&quot;TB_UF&quot;"
+	 dst-table="public.&quot;TB_CIDADE&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="80.101" y="8.43945"/>
+	</label>
+</relationship>
+
+<table name="TB_TIPO_LOGRADOURO">
+	<schema name="public"/>
+	<position x="1849.35" y="267.674"/>
+	<column name="ID_TPO_LOGRADOURO" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="PK_LOGRADOURO" type="pk-constr" factor="10" table="public.&quot;TB_TIPO_LOGRADOURO&quot;">
+		<columns names="ID_TPO_LOGRADOURO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_LOGRADOURO_has_many_TB_ENDERECO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="8" constr-indexes="1"
+	 src-table="public.&quot;TB_TIPO_LOGRADOURO&quot;"
+	 dst-table="public.&quot;TB_ENDERECO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="TB_CIDADE_has_many_TB_ENDERECO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="2"
+	 src-table="public.&quot;TB_CIDADE&quot;"
+	 dst-table="public.&quot;TB_ENDERECO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="20.9407" y="-3.13153"/>
+	</label>
+</relationship>
+
+<table name="TB_CONTRATO">
+	<schema name="public"/>
+	<position x="154" y="286"/>
+	<column name="ID_CONTRATO">
+		<type name="serial"/>
+	</column>
+	<column name="DT_EVENTO" not-null="true">
+		<type name="timestamp"/>
+	</column>
+	<column name="TOTAL_PAGAR" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="QTDE_PARCELAS" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<column name="JURO_MENSAL" not-null="true">
+		<type name="varchar" length="6"/>
+	</column>
+	<column name="VALOR_PARCELA">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="DT_CONTRATO">
+		<type name="date"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_CONTRATO" type="pk-constr" factor="10" table="public.&quot;TB_CONTRATO&quot;">
+		<columns names="ID_CONTRATO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_CLIENTE_has_many_TB_CONTRATO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="8" constr-indexes="0"
+	 src-table="public.&quot;TB_CLIENTE&quot;"
+	 dst-table="public.&quot;TB_CONTRATO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="TB_CONTRATO_has_one_TB_EVENTO" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="9" constr-indexes="2,3"
+	 src-table="public.&quot;TB_EVENTO&quot;"
+	 dst-table="public.&quot;TB_CONTRATO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="TB_LOCAL_EVENTO_has_one_TB_CONTATO" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="2,3"
+	 src-table="public.&quot;TB_CONTATO&quot;"
+	 dst-table="public.&quot;TB_LOCAL_EVENTO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="50.6157" y="-46.7485"/>
+	</label>
+</relationship>
+
+<table name="TB_LOGIN_APLICACAO">
+	<schema name="public"/>
+	<position x="22" y="115"/>
+	<column name="ID_LOGIN">
+		<type name="serial"/>
+	</column>
+	<column name="USUARIO" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="SENHA" not-null="true">
+		<type name="varchar" length="15"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_LOGIN" type="pk-constr" factor="10" table="public.&quot;TB_LOGIN_APLICACAO&quot;">
+		<columns names="ID_LOGIN" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="TB_TIPO_CONTATO">
+	<schema name="public"/>
+	<position x="914" y="678"/>
+	<column name="ID_TIPO_CONTATO">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO">
+		<type name="varchar" length="25"/>
+	</column>
+	<constraint name="PK_ID_TIPO_CONTATO" type="pk-constr" factor="10" table="public.&quot;TB_TIPO_CONTATO&quot;">
+		<columns names="ID_TIPO_CONTATO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_TIPO_CONTATO_has_many_TB_CONTATO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1"
+	 src-table="public.&quot;TB_TIPO_CONTATO&quot;"
+	 dst-table="public.&quot;TB_CONTATO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="-89.6892" y="-4.29852"/>
+	</label>
+</relationship>
+
+<relationship name="TB_CLIENTE_has_many_TB_CONTATO" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="2"
+	 src-table="public.&quot;TB_CLIENTE&quot;"
+	 dst-table="public.&quot;TB_CONTATO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="TB_EVENTO_has_one_TB_LOCAL_EVENTO" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="3,4"
+	 src-table="public.&quot;TB_LOCAL_EVENTO&quot;"
+	 dst-table="public.&quot;TB_EVENTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="TB_FORMAS_PAGAMENTO">
+	<schema name="public"/>
+	<position x="233" y="5"/>
+	<column name="ID_FORMA_PAGAMENTO">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="varchar" length="45"/>
+	</column>
+	<column name="FG_ATIVO" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<constraint name="PK_ID_FORMA_PAGAMENTO" type="pk-constr" factor="10" table="public.&quot;TB_FORMAS_PAGAMENTO&quot;">
+		<columns names="ID_FORMA_PAGAMENTO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="TB_CONTRATO_has_one_TB_FORMAS_PAGAMENTO" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="10" constr-indexes="4,5"
+	 src-table="public.&quot;TB_FORMAS_PAGAMENTO&quot;"
+	 dst-table="public.&quot;TB_CONTRATO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="34.4757" y="-54.5485"/>
+	</label>
+</relationship>
+
+<table name="TB_EVENTO_CONVIDADOS">
+	<schema name="public"/>
+	<position x="213" y="1022"/>
+</table>
+
+<relationship name="TB_CONVIDADOS_has_many_TB_EVENTO_CONVIDADOS" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="0"
+	 src-table="public.&quot;TB_CONVIDADOS&quot;"
+	 dst-table="public.&quot;TB_EVENTO_CONVIDADOS&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="TB_EVENTO_has_many_TB_EVENTO_CONVIDADOS" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1"
+	 src-table="public.&quot;TB_EVENTO&quot;"
+	 dst-table="public.&quot;TB_EVENTO_CONVIDADOS&quot;"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
